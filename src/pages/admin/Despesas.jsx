@@ -199,9 +199,9 @@ const Despesas = () => {
                 <td>
                   {isEditing ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <input
-                        type="number"
-                        value={despesa.quantidade || ''}
+                    <input
+                      type="number"
+                      value={despesa.quantidade || ''}
                         onChange={(e) => {
                           const valor = e.target.value
                           handleChange(despesa.id, 'quantidade', valor)
@@ -210,7 +210,7 @@ const Despesas = () => {
                         max={despesa.categoria && despesa.categoria.toLowerCase().includes('taxa') ? 100 : undefined}
                         placeholder={despesa.categoria && despesa.categoria.toLowerCase().includes('taxa') ? '0' : ''}
                         style={{ width: '60px', padding: '5px', background: '#2d2d2d', color: '#ffffff', border: '1px solid #404040', borderRadius: '4px' }}
-                      />
+                    />
                       {despesa.categoria && despesa.categoria.toLowerCase().includes('taxa') && (
                         <span style={{ color: '#ffffff' }}>%</span>
                       )}
@@ -250,13 +250,13 @@ const Despesas = () => {
                 {isEditing && (
                   <td>
                     {!(despesa.categoria && despesa.categoria.toLowerCase().includes('taxa')) && (
-                      <button 
-                        onClick={() => handleDeleteRow(despesa.id)}
-                        className="despesas-delete-button"
-                        title="Excluir linha"
-                      >
+                    <button 
+                      onClick={() => handleDeleteRow(despesa.id)}
+                      className="despesas-delete-button"
+                      title="Excluir linha"
+                    >
                         <FaTimes />
-                      </button>
+                    </button>
                     )}
                   </td>
                 )}

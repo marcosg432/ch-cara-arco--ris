@@ -399,7 +399,7 @@ const Financeiro = () => {
                 dataKey="faturamento" 
                 stroke={faturamentoTotal > 0 ? COLORS.blue : COLORS.gray} 
                 name="Faturamento" 
-                dot={false}
+                dot={false} 
                 strokeWidth={4}
               />
             </LineChart>
