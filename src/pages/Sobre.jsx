@@ -5,9 +5,9 @@ import './Sobre.css'
 
 // Sempre as MESMAS 3 imagens, apenas trocando de posição (carrossel)
 const carouselImages = [
-  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400',
-  'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800',
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400'
+  '/imagem/14.jpg',
+  '/imagem/13.jpg',
+  '/imagem/2.jpg'
 ]
 
 const Sobre = () => {
@@ -33,14 +33,14 @@ const Sobre = () => {
         <div className="sobre-page-hero-background"></div>
         <Header />
         <div className="sobre-page-hero-content">
-          <h1 className="sobre-page-hero-title">Brisa Azul</h1>
-          <p className="sobre-page-hero-subtitle">RESORT & SPA HOTEL</p>
+          <h1 className="sobre-page-hero-title">Chácara Arco Íris</h1>
+          <p className="sobre-page-hero-subtitle">CHÁCARA & HOSPEDAGEM</p>
         </div>
       </section>
 
       {/* Conheça Section */}
       <section className="conheca-section">
-        <h2 className="conheca-title">Conheça o Brisa Azul</h2>
+        <h2 className="conheca-title">Conheça a Chácara Arco Íris</h2>
         <div className="conheca-images">
           <div
             className="conheca-image-left"
@@ -64,10 +64,10 @@ const Sobre = () => {
           <h2 className="historia-title">Nossa Historia</h2>
           <div className="historia-text">
             <p>
-              O Hotel & Resort Brisa Império nasceu com o propósito de oferecer mais do que hospedagem: criar experiências marcantes de conforto, descanso e bem-estar. Nossa missão é combinar qualidade, serviço humanizado e um ambiente acolhedor, onde cada hóspede se sinta especial e único.
+              A Chácara Arco Íris nasceu com o propósito de oferecer mais do que hospedagem: criar experiências marcantes de conforto, descanso e bem-estar. Nossa missão é combinar qualidade, serviço humanizado e um ambiente acolhedor, onde cada hóspede se sinta especial e único.
             </p>
             <p>
-              Inspirados pela tranquilidade da brisa e pela beleza natural da região, cada detalhe foi pensado para proporcionar momentos únicos. Ao longo dos anos, evoluímos nossa estrutura e serviços, sempre mantendo o compromisso com a excelência, a hospitalidade e o cuidado com nossos hóspedes.
+              Inspirados pela tranquilidade e pela beleza natural da região, cada detalhe foi pensado para proporcionar momentos únicos. Ao longo dos anos, evoluímos nossa estrutura e serviços, sempre mantendo o compromisso com a excelência, a hospitalidade e o cuidado com nossos hóspedes.
             </p>
             <p>
               Hoje, seguimos construindo nossa história com dedicação, respeito e paixão por receber bem, transformando cada estadia em uma lembrança inesquecível.
@@ -100,7 +100,7 @@ const Sobre = () => {
       <section className="ambiente-section">
         <h2 className="ambiente-title">Ambiente ideal para relaxar</h2>
         <p className="ambiente-text">
-          O Brisa Império oferece o equilíbrio perfeito entre conforto, tranquilidade e lazer, em um ambiente cuidadosamente planejado para proporcionar descanso e bem-estar. Cada espaço foi pensado para criar uma atmosfera acolhedora e silenciosa, ideal para quem deseja desacelerar, relaxar e renovar as energias, aproveitando momentos únicos em meio a uma experiência completa de hospedagem.
+          A Chácara Arco Íris oferece o equilíbrio perfeito entre conforto, tranquilidade e lazer, em um ambiente cuidadosamente planejado para proporcionar descanso e bem-estar. Cada espaço foi pensado para criar uma atmosfera acolhedora e silenciosa, ideal para quem deseja desacelerar, relaxar e renovar as energias, aproveitando momentos únicos em meio a uma experiência completa de hospedagem.
         </p>
         <div className="ambiente-image"></div>
       </section>

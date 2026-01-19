@@ -21,11 +21,13 @@ import Despesas from './pages/admin/Despesas'
 import Planilha from './pages/admin/Planilha'
 import Booking from './pages/Booking'
 import Airbnb from './pages/Airbnb'
+import VideoPreloader from './components/VideoPreloader'
 
 function App() {
   console.log('App component rendering')
   return (
     <Router>
+      <VideoPreloader />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quartos" element={<Quartos />} />

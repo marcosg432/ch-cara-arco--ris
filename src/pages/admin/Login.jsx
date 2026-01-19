@@ -28,7 +28,7 @@ const Login = () => {
     <div className="login-page">
       <PixelCursorTrail />
       <div className="login-logo-corner">
-        <img src="/icones/logo boa.png" className="login-logo-corner-icon" alt="Brisa Azul Logo" />
+        <img src="/icones/logo boa.png" className="login-logo-corner-icon" alt="Chácara Arco Íris Logo" />
       </div>
       <div className="login-container">
         <div className="login-logo">

@@ -39,8 +39,8 @@ const PrivateHeader = () => {
     <header className="private-header">
       <div className="private-header-container">
         <Link to="/" className="private-logo">
-          <img src="/icones/logo boa.png" className="private-logo-icon" alt="Brisa Azul Logo" />
-          <span className="private-logo-text">brisa azul</span>
+          <img src="/icones/logo boa.png" className="private-logo-icon" alt="Chácara Arco Íris Logo" />
+          <span className="private-logo-text">chácara arco íris</span>
         </Link>
         <nav className="private-nav">
           {navItems.map((item) => {

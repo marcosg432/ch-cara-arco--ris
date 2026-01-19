@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaInstagram, FaFacebook } from 'react-icons/fa'
 import './Footer.css'
 
 const Footer = () => {
@@ -8,12 +9,11 @@ const Footer = () => {
       <div className="home-footer-content">
         <div className="home-footer-left">
           <div className="home-footer-logo">
-            <img src="/icones/logo boa.png" alt="Brisa Azul Logo" />
+            <img src="/icones/logo boa.png" alt="Chácara Arco Íris Logo" />
           </div>
           <h2 className="home-footer-title">
-            Bem-vindo<br />
-            ao<br />
-            Brisa Azul
+            Bem-vindo à<br />
+            Chácara Arco Íris
           </h2>
         </div>
 
@@ -29,8 +29,17 @@ const Footer = () => {
 
         <div className="home-footer-right">
           <div className="home-footer-contact">
-            <p className="home-footer-phone">(11) 99000-0000</p>
-            <p className="home-footer-email">seu@email.com</p>
+            <p className="home-footer-phone">(83) 98805-0587</p>
+            <p className="home-footer-email">valentnet1990@gmail.com</p>
+            <p className="home-footer-address">Sítio Mata D'água, Granja 22 - Alhandra/PB - CEP 58322-000</p>
+          </div>
+          <div className="home-footer-social">
+            <a href="https://www.instagram.com/chacara.arcoiris?igsh=a2ZzM2dieDZsbjk3&utm_source=qr" target="_blank" rel="noopener noreferrer" className="home-footer-social-link">
+              <FaInstagram size={20} />
+            </a>
+            <a href="https://www.facebook.com/share/1aWqvqYRK8/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="home-footer-social-link">
+              <FaFacebook size={20} />
+            </a>
           </div>
           <button className="home-footer-button">Fazer reserva</button>
         </div>

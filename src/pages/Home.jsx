@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { FaSun, FaWater, FaStar, FaHeart, FaUmbrellaBeach } from 'react-icons/fa'
 import Header from '../components/Header'
 import { VerticalImageStack } from '../components/VerticalImageStack'
-import CircularImages from '../components/CircularImages'
+import ArcGalleryHero from '../components/ArcGalleryHero'
+import { AnimatedMarqueeHero } from '../components/AnimatedMarqueeHero'
 import Footer from '../components/Footer'
 import './Home.css'
 
@@ -10,24 +11,26 @@ const Home = () => {
   console.log('Home component rendering')
   return (
     <div className="home">
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-background">
-          <video
-            className="hero-video"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="/video/video mar.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <Header />
-        <div className="hero-content">
-          <h1 className="hero-title">Brisa Azul</h1>
-          <p className="hero-subtitle">RESORT & SPA HOTEL</p>
-        </div>
+      <Header />
+      
+      {/* Arc Gallery Hero Section */}
+      <section className="arc-hero-section">
+        <ArcGalleryHero
+          images={[
+            '/imagem/1.jpg',
+            '/imagem/2.jpg',
+            '/imagem/3.jpg',
+            '/imagem/4.jpg',
+            '/imagem/5.jpg',
+            '/imagem/6.jpg',
+            '/imagem/7.jpg',
+            '/imagem/8.jpg',
+            '/imagem/9.jpg',
+            '/imagem/10.jpg',
+            '/imagem/11.jpg',
+            '/imagem/12.jpg'
+          ]}
+        />
       </section>
 
       {/* sobre nós */}
@@ -36,20 +39,26 @@ const Home = () => {
           <div className="sobre-text">
             <h2 className="sobre-title">sobre nós</h2>
             <p className="sobre-paragraph">
-              O Hotel & Resort Brisa Império nasceu com o propósito de oferecer mais do que hospedagem: criar experiências marcantes de conforto, descanso e bem-estar. Somos um refúgio exclusivo onde o conforto, a sofisticação e a natureza se encontram em perfeita harmonia.
+              A Chácara Arco-Íris é um espaço pensado para quem busca tranquilidade, conforto e contato direto com a natureza. Um lugar ideal para descanso, lazer e momentos especiais, seja para um fim de semana em família, uma viagem a dois ou para reunir amigos.
             </p>
             <p className="sobre-paragraph">
-              Oferecemos uma experiência única, combinando estrutura moderna, serviço de alto padrão e ambientes acolhedores, ideais para relaxar e viver momentos inesquecíveis em família ou a dois. Nossos quartos confortáveis, áreas de lazer completas e localização privilegiada garantem tranquilidade, bem-estar e experiências memoráveis.
+              Aqui, cada ambiente foi planejado para oferecer uma experiência completa, em um espaço acolhedor, bem cuidado e cercado por verde, onde é possível desacelerar e aproveitar o tempo com mais calma.
             </p>
             <p className="sobre-paragraph">
-              Cada detalhe foi pensado para que você desfrute de dias de relaxamento, conforto e excelência, sempre acompanhado pela brisa leve que inspira o nome Brisa Império.
+              Nossa estrutura conta com suítes confortáveis, áreas amplas de convivência e espaços ao ar livre que proporcionam bem-estar, privacidade e liberdade para famílias, casais ou grupos aproveitarem cada momento com tranquilidade.
+            </p>
+            <p className="sobre-paragraph">
+              Além do conforto, prezamos pela segurança, organização e cuidado em cada detalhe, garantindo que sua estadia seja leve, agradável e sem preocupações.
+            </p>
+            <p className="sobre-paragraph">
+              Na Chácara Arco-Íris, natureza, descanso e bons momentos caminham juntos para criar experiências simples, confortáveis e memoráveis.
             </p>
             <button className="sobre-button">saiba mais</button>
           </div>
           <div className="sobre-image">
             <img
-              src="/imagem/foto modelo.png"
-              alt="Brisa Azul Resort"
+              src="/imagem/imagem nova.png"
+              alt="Chácara Arco Íris"
               className="sobre-image-foto"
             />
           </div>
@@ -89,73 +98,66 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Galeria Section */}
-      <section className="nova-secao-section">
-        <div className="nova-secao-container">
-          <h2 className="galeria-section-title">Galeria</h2>
-          <CircularImages
-            testimonials={[
-              {
-                src: "/imagem/imagem 1.jpg"
-              },
-              {
-                src: "/imagem/imagem 2.jpg"
-              },
-              {
-                src: "/imagem/imagem 3.jpg"
-              }
-            ]}
-            autoplay={true}
-          />
-          <p className="galeria-section-text">Conheça nossa galeria de imagens</p>
-          <Link 
-            to="/galeria" 
-            className="galeria-section-button"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            Ir para galeria
-          </Link>
-        </div>
-      </section>
+      {/* Animated Marquee Hero Section */}
+      <AnimatedMarqueeHero
+        tagline=""
+        title=""
+        description=""
+        ctaText=""
+        images={[
+          "/imagem/1.jpg",
+          "/imagem/2.jpg",
+          "/imagem/3.jpg",
+          "/imagem/4.jpg",
+          "/imagem/5.jpg",
+          "/imagem/6.jpg",
+          "/imagem/7.jpg",
+          "/imagem/8.jpg"
+        ]}
+      />
 
       {/* imagem solo */}
       <section className="imagem-fundo-section"></section>
 
       {/* azul */}
       <section className="porque-section">
-        <h2 className="porque-title">Por que escolher o Brisa Azul?</h2>
+        <h2 className="porque-title">Por que escolher a Chácara Arco Íris?</h2>
         <div className="porque-grid">
           <div className="porque-card">
             <div className="porque-card-header">
-              <h3 className="porque-card-title">PRAIAS MAIS BONITAS DA REGIÃO</h3>
+              <h3 className="porque-card-title">Localização tranquila e privilegiada</h3>
               <FaSun className="porque-icon sol" />
             </div>
             <p className="porque-card-text">
-              Estamos cercados por paisagens naturais deslumbrantes, com praias de águas cristalinas e cenários perfeitos para relaxar e viver momentos inesquecíveis.
+              A Chácara Arco-Íris está localizada em uma região tranquila, cercada pela natureza, ideal para quem busca sossego, privacidade e fácil acesso. Um ambiente perfeito para descansar, relaxar e aproveitar momentos especiais longe da correria do dia a dia.
             </p>
             <FaWater className="porque-icon onda" />
           </div>
           <div className="porque-card">
             <div className="porque-card-header">
               <FaStar className="porque-icon estrela" />
-              <h3 className="porque-card-title">CONFORTO E SOFISTICAÇÃO</h3>
+              <h3 className="porque-card-title">Conforto e estrutura completa</h3>
               <FaStar className="porque-icon estrela" />
             </div>
             <p className="porque-card-text">
-              Nossos quartos e áreas comuns foram pensados para oferecer máximo conforto, elegância e bem-estar em cada detalhe da sua estadia.
+              Nossos espaços foram planejados para oferecer conforto, organização e bem-estar. Contamos com suítes aconchegantes, áreas de convivência bem cuidadas e ambientes pensados para receber famílias, casais e grupos com total comodidade.
             </p>
           </div>
           <div className="porque-card">
-            <h3 className="porque-card-title">ATENDIMENTO ACOLHEDOR</h3>
+            <div className="porque-card-header">
+              <h3 className="porque-card-title">Atendimento simples e acolhedor</h3>
+            </div>
             <p className="porque-card-text">
-              Nossa equipe é treinada para receber cada hóspede com atenção, cuidado e hospitalidade, garantindo uma experiência única do início ao fim.
+              Prezamos por um atendimento atencioso e humanizado, garantindo que cada visitante se sinta bem-vindo desde o primeiro contato. Estamos sempre disponíveis para auxiliar no agendamento e tornar sua experiência leve e tranquila.
             </p>
             <FaHeart className="porque-icon coracao" />
           </div>
           <div className="porque-card">
-            <h3 className="porque-card-title">EXPERIÊNCIA COMPLETA DE DESCANSO</h3>
+            <div className="porque-card-header">
+              <h3 className="porque-card-title">Ideal para descanso e lazer</h3>
+            </div>
             <p className="porque-card-text">
-              Aqui você encontra tranquilidade, lazer e contato com a natureza em um só lugar, ideal para renovar as energias e aproveitar cada momento.
+              A Chácara Arco-Íris é o lugar ideal para descansar, comemorar ou simplesmente aproveitar bons momentos. Seja para um fim de semana, feriado ou ocasião especial, aqui você encontra tranquilidade, lazer e contato com a natureza em um só lugar.
             </p>
             <FaUmbrellaBeach className="porque-icon praia" />
           </div>

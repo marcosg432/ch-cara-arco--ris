@@ -55,8 +55,8 @@ const Header = () => {
     <header className={`header ${isWhiteBg ? 'header-white-bg' : ''}`}>
       <div className="header-container">
         <Link to="/" className="logo" onClick={closeMenu}>
-          <img src="/icones/logo boa.png" className="logo-icon" alt="Brisa Azul Logo" />
-          <span className="logo-text">brisa azul</span>
+          <img src="/icones/logo boa.png" className="logo-icon" alt="Chácara Arco Íris Logo" />
+          <span className="logo-text">chácara arco íris</span>
         </Link>
         <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
           {isMenuOpen ? <FaTimes /> : <FaBars />}

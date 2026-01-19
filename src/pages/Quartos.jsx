@@ -12,8 +12,8 @@ const Quartos = () => {
         <div className="quartos-hero-background"></div>
         <Header />
         <div className="quartos-hero-content">
-          <h1 className="quartos-hero-title">Brisa Azul</h1>
-          <p className="quartos-hero-subtitle">RESORT & SPA HOTEL</p>
+          <h1 className="quartos-hero-title">Chácara Arco Íris</h1>
+          <p className="quartos-hero-subtitle">CHÁCARA & HOSPEDAGEM</p>
         </div>
       </section>
 
@@ -21,7 +21,7 @@ const Quartos = () => {
       <section className="quartos-text-section">
         <p className="quartos-text">
           CONHEÇA TODOS OS NOSSOS QUARTOS E ESCOLHA A OPÇÃO IDEAL PARA A SUA ESTADIA.
-          NO BRISA IMPÉRIO, CADA SUÍTE OFERECE CONFORTO, TRANQUILIDADE E O AMBIENTE
+          NA CHÁCARA ARCO ÍRIS, CADA SUÍTE OFERECE CONFORTO, TRANQUILIDADE E O AMBIENTE
           PERFEITO PARA VOCÊ RELAXAR E APROVEITAR MOMENTOS INESQUECÍVEIS.
         </p>
       </section>
@@ -44,7 +44,7 @@ const Quartos = () => {
             <div className="quartos-page-card-icon"><FaTv /></div>
             <h3 className="quartos-page-card-title">Suíte Brisa Exclusiva (novo quarto)</h3>
             <p className="quartos-page-card-description">
-              A Suíte Brisa Exclusiva combina elegância, conforto e privacidade em um só espaço. Ideal para quem busca uma estadia diferenciada, com mais tranquilidade e uma experiência única no Brisa Império.
+              A Suíte Brisa Exclusiva combina elegância, conforto e privacidade em um só espaço. Ideal para quem busca uma estadia diferenciada, com mais tranquilidade e uma experiência única na Chácara Arco Íris.
             </p>
             <div className="quartos-page-card-price">R$ 550 / Noite</div>
             <Link to="/suite-exclusiva" className="quartos-page-card-button">saiba mais</Link>

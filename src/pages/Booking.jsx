@@ -103,7 +103,7 @@ const Booking = () => {
             <div className="booking-form-row">
               <div className="booking-form-group">
                 <label>Destino</label>
-                <input type="text" value="Brisa Azul Resort" readOnly />
+                <input type="text" value="Chácara Arco Íris" readOnly />
               </div>
               <div className="booking-form-group">
                 <label>Check-in</label>

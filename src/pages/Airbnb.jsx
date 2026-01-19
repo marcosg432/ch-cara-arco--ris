@@ -104,7 +104,7 @@ const Airbnb = () => {
       <div className="airbnb-search-bar">
         <div className="airbnb-search-item">
           <label>Localização</label>
-          <input type="text" value="Brisa Azul Resort" readOnly />
+          <input type="text" value="Chácara Arco Íris" readOnly />
         </div>
         <div className="airbnb-search-item">
           <label>Check-in</label>
@@ -167,7 +167,7 @@ const Airbnb = () => {
 
       <div className="airbnb-container">
         <div className="airbnb-main">
-          <h1 className="airbnb-title">Suítes em Brisa Azul Resort</h1>
+          <h1 className="airbnb-title">Suítes na Chácara Arco Íris</h1>
           
           <div className="airbnb-suites-grid">
             {suites.map(suite => (

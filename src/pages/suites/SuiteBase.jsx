@@ -176,7 +176,7 @@ const SuiteBase = ({ suiteData }) => {
           
           <div className="suite-description">
             <div className="suite-description-logo">
-              <img src="/icones/logo boa.png" className="suite-description-logo-icon" alt="Brisa Azul Logo" />
+              <img src="/icones/logo boa.png" className="suite-description-logo-icon" alt="Chácara Arco Íris Logo" />
             </div>
             <h2 className="suite-title">{suiteData.nome}</h2>
             <p className="suite-text">{suiteData.descricao}</p>
@@ -234,7 +234,7 @@ const SuiteBase = ({ suiteData }) => {
 
           <div className="suite-rules-policies">
             <h4 className="suite-rules-title">Regras e Políticas</h4>
-            <p className="suite-rules-details">Check-in: 14h | Check-out: 12h | Aceita pets | Estacionamento gratuito</p>
+            <p className="suite-rules-details">Check-in: 12h | Check-out: 12h | Aceita pets | Estacionamento gratuito</p>
           </div>
 
           {!showBookingForm && (
@@ -251,14 +251,14 @@ const SuiteBase = ({ suiteData }) => {
           <div className="suite-booking-below">
           <div className="suite-booking">
             <div className="suite-booking-logo">
-              <img src="/icones/logo boa.png" className="suite-booking-logo-icon" alt="Brisa Azul Logo" />
+              <img src="/icones/logo boa.png" className="suite-booking-logo-icon" alt="Chácara Arco Íris Logo" />
             </div>
             <h3 className="suite-booking-title">{suiteData.nome}</h3>
             
             <div className="suite-booking-info">
               <div className="booking-info-item">
                 <label>Horário de check-in</label>
-                <p>check-in a partir das 13:00</p>
+                <p>check-in a partir das 12:00</p>
                 <p>check-out ate as 10:00</p>
               </div>
               <div className="booking-info-item">
