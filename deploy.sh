@@ -3,7 +3,7 @@
 # Script de Deploy para Hostinger com PM2
 # Porta: 3005 (portas 3007, 3006, 3000, 3004, 3003, 3002, 3001 estão em uso)
 
-echo "🚀 Iniciando deploy do Brisa Azul na Hostinger..."
+echo "🚀 Iniciando deploy da Chácara Arco Íris na Hostinger..."
 
 # Cores para output
 GREEN='\033[0;32m'
@@ -35,7 +35,7 @@ mkdir -p logs
 
 # Parar PM2 se já estiver rodando
 echo -e "${YELLOW}🛑 Parando instâncias anteriores do PM2...${NC}"
-pm2 delete brisa-azul 2>/dev/null || true
+pm2 delete chacara-arco-iris 2>/dev/null || true
 
 # Iniciar com PM2
 echo -e "${YELLOW}▶️  Iniciando aplicação com PM2 na porta 3005...${NC}"
@@ -53,7 +53,7 @@ pm2 status
 
 echo ""
 echo "📝 Para ver os logs:"
-echo "   pm2 logs brisa-azul"
+echo "   pm2 logs chacara-arco-iris"
 echo ""
 echo "🌐 Aplicação rodando em: http://seu-ip:3005"
 echo ""
