@@ -60,8 +60,8 @@
 }
 
 .logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 120px;
+  height: 90px;
   object-fit: contain;
 }
 
@@ -202,8 +202,8 @@
   }
 
   .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 96px;
+    height: 72px;
   }
 
   .logo-text {

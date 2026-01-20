@@ -14,7 +14,6 @@ const AdminHeader = ({ currentPage }) => {
     <header className="admin-header">
       <div className="admin-header-top">
         <Link to="/admin" className="admin-logo">
-          <span className="admin-logo-text">chácara arco íris</span>
         </Link>
         <button onClick={handleLogout} className="admin-logout">Sair</button>
       </div>

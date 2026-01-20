@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaSnowflake, FaLock, FaWifi, FaBriefcase, FaTv, FaChevronLeft, FaChevronRight, FaUsers, FaRulerCombined, FaDollarSign } from 'react-icons/fa'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import PrivateHeader from '../../components/PrivateHeader'
 import Footer from '../../components/Footer'
 import Calendar from '../../components/Calendar'
@@ -14,13 +14,20 @@ const SuiteBase = ({ suiteData }) => {
   const [showCalendar, setShowCalendar] = useState({ checkIn: false, checkOut: false })
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
-  // Imagens do carrossel - você pode adicionar mais imagens aqui
-  const suiteImages = [
-    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200',
-    'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200',
-    'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200',
-    'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200'
-  ]
+  // Imagens do carrossel - mapeadas por quarto
+  const getSuiteImages = () => {
+    const imageMap = {
+      'imperial': ['/imagem/quartos/Chale-03.jpeg'],
+      'luxo': ['/imagem/quartos/Chale-04.jpeg'],
+      'chale05': ['/imagem/quartos/dormitorio-feminino-08.jpeg'],
+      'premium': ['/imagem/quartos/Chale-06.jpeg'],
+      'exclusiva': ['/imagem/quartos/Chale-07.jpeg'],
+      'chale08': ['/imagem/quartos/dormitorio-masculino-09.jpeg']
+    }
+    return imageMap[suiteData.id] || ['/imagem/quartos/Chale-03.jpeg']
+  }
+  
+  const suiteImages = getSuiteImages()
 
   const [formData, setFormData] = useState({
     nome: '',
@@ -175,62 +182,9 @@ const SuiteBase = ({ suiteData }) => {
           </div>
           
           <div className="suite-description">
-            <div className="suite-description-logo">
-              <img src="/icones/logo boa.png" className="suite-description-logo-icon" alt="Chácara Arco Íris Logo" />
-            </div>
             <h2 className="suite-title">{suiteData.nome}</h2>
-            <p className="suite-text">{suiteData.descricao}</p>
-            <p className="suite-text">
-              A {suiteData.nome} oferece um ambiente aconchegante e elegante, ideal para quem busca conforto e tranquilidade durante a estadia. Pensada para proporcionar descanso com privacidade e bem-estar, é perfeita para hóspedes que desejam uma experiência confortável e relaxante. Entre as comodidades oferecidas estão ar-condicionado, cofre, Wi-Fi, mesa de trabalho e TV Smart, garantindo praticidade, conforto e conectividade durante toda a hospedagem.
-            </p>
           </div>
 
-          <div className="suite-amenities">
-            <div className="amenity-item">
-              <span className="amenity-icon"><FaSnowflake /></span>
-              <span>Ar condicionado</span>
-            </div>
-            <div className="amenity-item">
-              <span className="amenity-icon"><FaLock /></span>
-              <span>Cofre</span>
-            </div>
-            <div className="amenity-item">
-              <span className="amenity-icon"><FaWifi /></span>
-              <span>Wi-fi</span>
-            </div>
-            <div className="amenity-item">
-              <span className="amenity-icon"><FaBriefcase /></span>
-              <span>Mesa de trabalho</span>
-            </div>
-            <div className="amenity-item">
-              <span className="amenity-icon"><FaTv /></span>
-              <span>Tv Smart</span>
-            </div>
-          </div>
-
-          <div className="suite-info-cards">
-            <div className="suite-info-card">
-              <div className="suite-info-icon">
-                <FaUsers />
-              </div>
-              <div className="suite-info-label">Capacidade</div>
-              <div className="suite-info-value">Até 8 pessoas</div>
-            </div>
-            <div className="suite-info-card">
-              <div className="suite-info-icon">
-                <FaRulerCombined />
-              </div>
-              <div className="suite-info-label">Tamanho</div>
-              <div className="suite-info-value">100 m²</div>
-            </div>
-            <div className="suite-info-card">
-              <div className="suite-info-icon">
-                <FaDollarSign />
-              </div>
-              <div className="suite-info-label">Valor da Diária</div>
-              <div className="suite-info-value">R$ {formatarMoeda(suiteData.preco)}/noite</div>
-            </div>
-          </div>
 
           <div className="suite-rules-policies">
             <h4 className="suite-rules-title">Regras e Políticas</h4>
@@ -250,9 +204,6 @@ const SuiteBase = ({ suiteData }) => {
         {showBookingForm && (
           <div className="suite-booking-below">
           <div className="suite-booking">
-            <div className="suite-booking-logo">
-              <img src="/icones/logo boa.png" className="suite-booking-logo-icon" alt="Chácara Arco Íris Logo" />
-            </div>
             <h3 className="suite-booking-title">{suiteData.nome}</h3>
             
             <div className="suite-booking-info">

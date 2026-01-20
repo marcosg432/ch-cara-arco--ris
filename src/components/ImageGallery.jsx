@@ -2,27 +2,32 @@ import React from 'react';
 import { AspectRatio } from './AspectRatio';
 import './ImageGallery.css';
 
+// Array com todas as imagens da galeria
+const galleryImages = Array.from({ length: 25 }, (_, i) => `/imagem/galeria/galeria-${i + 1}.jpeg`);
+
 export function ImageGallery() {
+  // Dividir imagens em 3 colunas
+  const columns = 3;
+  const imagesPerColumn = Math.ceil(galleryImages.length / columns);
+  
   return (
     <div className="image-gallery-container">
       <div className="image-gallery-grid">
-        {Array.from({ length: 3 }).map((_, col) => (
+        {Array.from({ length: columns }).map((_, col) => (
           <div key={col} className="image-gallery-column">
-            {Array.from({ length: 10 }).map((_, index) => {
-              const isPortrait = Math.random() > 0.5;
-              const width = isPortrait ? 1080 : 1920;
-              const height = isPortrait ? 1920 : 1080;
-              const ratio = isPortrait ? 9 / 16 : 16 / 9;
-              return (
-                <AnimatedImage
-                  key={`${col}-${index}`}
-                  alt={`Image ${col}-${index}`}
-                  src={`https://picsum.photos/seed/${col}-${index}/${width}/${height}`}
-                  ratio={ratio}
-                  placeholder={`https://placehold.co/${width}x${height}/`}
-                />
-              );
-            })}
+            {galleryImages
+              .slice(col * imagesPerColumn, (col + 1) * imagesPerColumn)
+              .map((src, index) => {
+                const globalIndex = col * imagesPerColumn + index;
+                return (
+                  <AnimatedImage
+                    key={globalIndex}
+                    alt={`Galeria ${globalIndex + 1}`}
+                    src={src}
+                    ratio={16 / 9}
+                  />
+                );
+              })}
           </div>
         ))}
       </div>
@@ -30,15 +35,7 @@ export function ImageGallery() {
   );
 }
 
-function AnimatedImage({ alt, src, ratio, placeholder }) {
-  const [imgSrc, setImgSrc] = React.useState(src);
-
-  const handleError = () => {
-    if (placeholder) {
-      setImgSrc(placeholder);
-    }
-  };
-
+function AnimatedImage({ alt, src, ratio }) {
   return (
     <AspectRatio
       ratio={ratio}
@@ -46,10 +43,9 @@ function AnimatedImage({ alt, src, ratio, placeholder }) {
     >
       <img
         alt={alt}
-        src={imgSrc}
+        src={src}
         className="image-gallery-image"
         loading="lazy"
-        onError={handleError}
       />
     </AspectRatio>
   );

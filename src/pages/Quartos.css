@@ -19,11 +19,23 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 50%, #0288d1 100%);
-  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920');
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.9);
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: contents;
+}
+
+.quartos-hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  object-fit: cover;
 }
 
 .quartos-hero-background::after {
@@ -34,6 +46,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 .quartos-hero-content {
@@ -41,6 +54,11 @@
   z-index: 10;
   text-align: center;
   margin-top: 100px;
+}
+
+.quartos-hero {
+  position: relative;
+  z-index: 1;
 }
 
 .quartos-hero-title {
@@ -127,20 +145,28 @@
   background-position: center;
 }
 
-.quartos-page-card-image.imperial {
-  background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600');
+.quartos-page-card-image.premium {
+  background-image: url('/imagem/quartos/Chale-06.jpeg');
 }
 
 .quartos-page-card-image.exclusiva {
-  background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600');
+  background-image: url('/imagem/quartos/Chale-07.jpeg');
 }
 
-.quartos-page-card-image.suite3 {
-  background-image: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600');
+.quartos-page-card-image.imperial {
+  background-image: url('/imagem/quartos/Chale-03.jpeg');
 }
 
-.quartos-page-card-image.suite4 {
-  background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600');
+.quartos-page-card-image.luxo {
+  background-image: url('/imagem/quartos/Chale-04.jpeg');
+}
+
+.quartos-page-card-image.chale05 {
+  background-image: url('/imagem/quartos/dormitorio-feminino-08.jpeg');
+}
+
+.quartos-page-card-image.chale08 {
+  background-image: url('/imagem/quartos/dormitorio-masculino-09.jpeg');
 }
 
 .quartos-page-card-icon {

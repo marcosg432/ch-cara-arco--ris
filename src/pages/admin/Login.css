@@ -16,8 +16,8 @@
 }
 
 .login-logo-corner-icon {
-  width: 40px;
-  height: 40px;
+  width: 120px;
+  height: 90px;
   object-fit: contain;
 }
 
@@ -134,8 +134,8 @@
   }
 
   .login-logo-corner-icon {
-    width: 30px;
-    height: 30px;
+    width: 91px;
+    height: 68px;
   }
 }
 

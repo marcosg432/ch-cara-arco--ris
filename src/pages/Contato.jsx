@@ -81,7 +81,7 @@ const Contato = () => {
             </div>
             <div className="contato-form-right">
               <div className="contato-logo">
-                <img src="/icones/logo boa.png" className="contato-logo-icon" alt="Chácara Arco Íris Logo" />
+                <img src="/icones/logo-arco-iris.png" className="contato-logo-icon" alt="Chácara Arco Íris Logo" />
               </div>
               <div className="contato-info">
                 <p><strong>Telefone/WhatsApp:</strong> (83) 98805-0587</p>
@@ -96,7 +96,7 @@ const Contato = () => {
 
           <div className="contato-map">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.3342!2d-34.9068!3d-7.4346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ac8b7c8b8b8b8b8%3A0x8b8b8b8b8b8b8b8b!2sS%C3%ADtio%20Mata%20D%27%C3%A1gua%2C%20Granja%2022%20-%20Alhandra%2FPB!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+              src="https://www.google.com/maps?q=Sítio+Mata+D'água,+Granja+22,+Alhandra,+PB,+58322-000&output=embed"
               width="100%"
               height="400"
               style={{ border: 0, borderRadius: '15px' }}

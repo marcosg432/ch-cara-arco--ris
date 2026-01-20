@@ -76,27 +76,39 @@ export const getQuartos = () => {
   const quartos = [
     {
       id: 'imperial',
-      nome: 'Suíte Brisa Imperial',
+      nome: 'Chále 03',
       preco: 249,
       descricao: 'Uma suíte elegante e aconchegante, pensada para quem busca conforto e tranquilidade.'
     },
     {
       id: 'luxo',
-      nome: 'Suíte Brisa Luxo',
+      nome: 'Chále 04',
       preco: 350,
-      descricao: 'Espaçosa e confortável, a Suíte Brisa Luxo oferece uma experiência premium.'
+      descricao: 'Espaçosa e confortável, oferece uma experiência premium.'
     },
     {
       id: 'premium',
-      nome: 'Suíte Brisa Premium',
+      nome: 'Chále 06',
       preco: 450,
       descricao: 'A opção mais exclusiva do hotel, perfeita para quem deseja viver momentos especiais.'
     },
     {
       id: 'exclusiva',
-      nome: 'Suíte Brisa Exclusiva',
+      nome: 'Chále 07',
       preco: 550,
       descricao: 'Combina elegância, conforto e privacidade em um só espaço.'
+    },
+    {
+      id: 'chale05',
+      nome: 'Dormitório 08 feminino',
+      preco: 400,
+      descricao: ''
+    },
+    {
+      id: 'chale08',
+      nome: 'Dormitório 09 masculino',
+      preco: 600,
+      descricao: ''
     }
   ]
   localStorage.setItem(STORAGE_KEYS.QUARTOS, JSON.stringify(quartos))

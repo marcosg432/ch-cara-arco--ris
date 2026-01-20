@@ -70,28 +70,19 @@ const Home = () => {
         <div className="quartos-container">
           <div className="quartos-card">
             <div className="quartos-card-image imperial"></div>
-            <h3 className="quartos-card-title">Suíte Brisa Imperial</h3>
-            <p className="quartos-card-description">
-              Uma suíte elegante e aconchegante, pensada para quem busca conforto e tranquilidade. Ideal para casais que desejam relaxar em um ambiente sofisticado, com clima intimista e acolhedor.
-            </p>
+            <h3 className="quartos-card-title">Chále 03</h3>
             <div className="quartos-card-price">R$ 249 / Noite</div>
             <Link to="/suite-imperial" className="quartos-card-button">saiba mais</Link>
           </div>
           <div className="quartos-card">
             <div className="quartos-card-image luxo"></div>
-            <h3 className="quartos-card-title">Suíte Brisa Luxo</h3>
-            <p className="quartos-card-description">
-              Espaçosa e confortável, a Suíte Brisa Luxo oferece uma experiência premium com design moderno e detalhes que garantem bem-estar, descanso e uma estadia inesquecível.
-            </p>
+            <h3 className="quartos-card-title">Chále 04</h3>
             <div className="quartos-card-price">R$ 350 / Noite</div>
             <Link to="/suite-luxo" className="quartos-card-button">saiba mais</Link>
           </div>
           <div className="quartos-card">
             <div className="quartos-card-image premium"></div>
-            <h3 className="quartos-card-title">Suíte Brisa Premium</h3>
-            <p className="quartos-card-description">
-              A opção mais exclusiva do hotel, perfeita para quem deseja viver momentos especiais. Conta com ambiente amplo, acabamento refinado e máximo conforto para uma experiência completa.
-            </p>
+            <h3 className="quartos-card-title">Chále 06</h3>
             <div className="quartos-card-price">R$ 450 / Noite</div>
             <Link to="/suite-premium" className="quartos-card-button">saiba mais</Link>
           </div>

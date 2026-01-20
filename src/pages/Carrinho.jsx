@@ -62,7 +62,7 @@ const Carrinho = () => {
             <div className="carrinho-header">
               <span className="carrinho-icon">🛒</span>
               <span className="carrinho-header-text">Meu carrinho</span>
-              <img src="/icones/logo boa.png" className="carrinho-logo" alt="Chácara Arco Íris Logo" />
+              <img src="/icones/logo-arco-iris.png" className="carrinho-logo" alt="Chácara Arco Íris Logo" />
             </div>
             <div className="carrinho-divider"></div>
             

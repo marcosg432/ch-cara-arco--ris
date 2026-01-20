@@ -227,15 +227,23 @@
 }
 
 .quartos-card-image.imperial {
-  background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600');
+  background-image: url('/imagem/quartos/Chale-03.jpeg');
 }
 
 .quartos-card-image.luxo {
-  background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600');
+  background-image: url('/imagem/quartos/Chale-04.jpeg');
 }
 
 .quartos-card-image.premium {
-  background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600');
+  background-image: url('/imagem/quartos/Chale-06.jpeg');
+}
+
+.quartos-card-image.chale05 {
+  background-image: url('/imagem/quartos/dormitorio-feminino-08.jpeg');
+}
+
+.quartos-card-image.chale08 {
+  background-image: url('/imagem/quartos/dormitorio-masculino-09.jpeg');
 }
 
 .quartos-card-title {

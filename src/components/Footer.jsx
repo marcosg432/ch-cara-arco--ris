@@ -9,11 +9,10 @@ const Footer = () => {
       <div className="home-footer-content">
         <div className="home-footer-left">
           <div className="home-footer-logo">
-            <img src="/icones/logo boa.png" alt="Chácara Arco Íris Logo" />
+            <img src="/icones/logo-arco-iris.png" alt="Chácara Arco Íris Logo" />
           </div>
           <h2 className="home-footer-title">
-            Bem-vindo à<br />
-            Chácara Arco Íris
+            Bem-vindo
           </h2>
         </div>
 

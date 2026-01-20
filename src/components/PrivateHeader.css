@@ -24,8 +24,8 @@
 }
 
 .private-logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 120px;
+  height: 90px;
   object-fit: contain;
 }
 
@@ -111,5 +111,91 @@
 /* Efeito adicional de brilho menor */
 .private-lamp-indicator::before {
   display: none;
+}
+
+/* Menu Toggle Button */
+.private-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #4fc3f7;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 101;
+  padding: 8px;
+  transition: opacity 0.3s;
+}
+
+.private-menu-toggle:hover {
+  opacity: 0.8;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .private-header {
+    padding: 20px;
+  }
+
+  .private-logo-icon {
+    width: 80px;
+    height: 60px;
+  }
+
+  .private-menu-toggle {
+    display: block;
+  }
+
+  .private-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(26, 26, 26, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 30px 30px;
+    gap: 0;
+    transition: right 0.3s ease;
+    z-index: 100;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .private-nav-open {
+    right: 0;
+  }
+
+  .private-nav-link {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(79, 195, 247, 0.1);
+    justify-content: flex-start;
+  }
+
+  .private-nav-link:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .private-header {
+    padding: 15px;
+  }
+
+  .private-logo-icon {
+    width: 70px;
+    height: 53px;
+  }
+
+  .private-nav {
+    width: 100%;
+    right: -100%;
+  }
+
+  .private-nav-open {
+    right: 0;
+  }
 }
 

@@ -9,7 +9,19 @@ const Quartos = () => {
     <div className="quartos-page">
       {/* Hero Section */}
       <section className="quartos-hero">
-        <div className="quartos-hero-background"></div>
+        <div className="quartos-hero-background">
+          <video 
+            className="quartos-hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            webkit-playsinline="true"
+          >
+            <source src="/video/video-banner-quartos.mp4" type="video/mp4" />
+          </video>
+        </div>
         <Header />
         <div className="quartos-hero-content">
           <h1 className="quartos-hero-title">Chácara Arco Íris</h1>
@@ -32,42 +44,44 @@ const Quartos = () => {
           <div className="quartos-page-card">
             <div className="quartos-page-card-image imperial"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
-            <h3 className="quartos-page-card-title">Suíte Brisa Premium</h3>
-            <p className="quartos-page-card-description">
-              A Suíte Brisa Premium é a escolha perfeita para quem deseja uma experiência exclusiva. Conta com acabamento refinado e um ambiente amplo, pensado para momentos especiais e inesquecíveis.
-            </p>
+            <h3 className="quartos-page-card-title">Chále 03</h3>
+            <div className="quartos-page-card-price">R$ 249 / Noite</div>
+            <Link to="/suite-imperial" className="quartos-page-card-button">saiba mais</Link>
+          </div>
+          <div className="quartos-page-card">
+            <div className="quartos-page-card-image luxo"></div>
+            <div className="quartos-page-card-icon"><FaTv /></div>
+            <h3 className="quartos-page-card-title">Chále 04</h3>
+            <div className="quartos-page-card-price">R$ 350 / Noite</div>
+            <Link to="/suite-luxo" className="quartos-page-card-button">saiba mais</Link>
+          </div>
+          <div className="quartos-page-card">
+            <div className="quartos-page-card-image premium"></div>
+            <div className="quartos-page-card-icon"><FaTv /></div>
+            <h3 className="quartos-page-card-title">Chále 06</h3>
             <div className="quartos-page-card-price">R$ 450 / Noite</div>
             <Link to="/suite-premium" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
             <div className="quartos-page-card-image exclusiva"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
-            <h3 className="quartos-page-card-title">Suíte Brisa Exclusiva (novo quarto)</h3>
-            <p className="quartos-page-card-description">
-              A Suíte Brisa Exclusiva combina elegância, conforto e privacidade em um só espaço. Ideal para quem busca uma estadia diferenciada, com mais tranquilidade e uma experiência única na Chácara Arco Íris.
-            </p>
+            <h3 className="quartos-page-card-title">Chále 07</h3>
             <div className="quartos-page-card-price">R$ 550 / Noite</div>
             <Link to="/suite-exclusiva" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
-            <div className="quartos-page-card-image suite3"></div>
+            <div className="quartos-page-card-image chale05"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
-            <h3 className="quartos-page-card-title">Suíte Brisa Deluxe</h3>
-            <p className="quartos-page-card-description">
-              A Suíte Brisa Deluxe oferece um ambiente sofisticado com vista privilegiada e todos os detalhes para tornar sua estadia inesquecível. Perfeita para casais em busca de romance e tranquilidade.
-            </p>
+            <h3 className="quartos-page-card-title">Dormitório 08 feminino</h3>
             <div className="quartos-page-card-price">R$ 400 / Noite</div>
-            <Link to="/suite-deluxe" className="quartos-page-card-button">saiba mais</Link>
+            <Link to="/suite-chale05" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
-            <div className="quartos-page-card-image suite4"></div>
+            <div className="quartos-page-card-image chale08"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
-            <h3 className="quartos-page-card-title">Suíte Brisa Master</h3>
-            <p className="quartos-page-card-description">
-              A Suíte Brisa Master é nosso espaço mais amplo e luxuoso, projetado para proporcionar máxima privacidade e conforto. Inclui área de estar exclusiva e todos os mimos para uma experiência premium.
-            </p>
-            <div className="quartos-page-card-price">R$ 500 / Noite</div>
-            <Link to="/suite-master" className="quartos-page-card-button">saiba mais</Link>
+            <h3 className="quartos-page-card-title">Dormitório 09 masculino</h3>
+            <div className="quartos-page-card-price">R$ 600 / Noite</div>
+            <Link to="/suite-chale08" className="quartos-page-card-button">saiba mais</Link>
           </div>
         </div>
       </section>

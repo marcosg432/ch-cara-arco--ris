@@ -8,6 +8,8 @@ import SuiteImperial from './pages/suites/SuiteImperial'
 import SuiteLuxo from './pages/suites/SuiteLuxo'
 import SuitePremium from './pages/suites/SuitePremium'
 import SuiteExclusiva from './pages/suites/SuiteExclusiva'
+import SuiteChale05 from './pages/suites/SuiteChale05'
+import SuiteChale08 from './pages/suites/SuiteChale08'
 import Carrinho from './pages/Carrinho'
 import Checkout from './pages/Checkout'
 import Login from './pages/admin/Login'
@@ -38,6 +40,8 @@ function App() {
         <Route path="/suite-luxo" element={<SuiteLuxo />} />
         <Route path="/suite-premium" element={<SuitePremium />} />
         <Route path="/suite-exclusiva" element={<SuiteExclusiva />} />
+        <Route path="/suite-chale05" element={<SuiteChale05 />} />
+        <Route path="/suite-chale08" element={<SuiteChale08 />} />
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin/login" element={<Login />} />
