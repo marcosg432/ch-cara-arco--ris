@@ -5,6 +5,19 @@ import Header from '../components/Header'
 import { getCarrinho, formatarMoeda } from '../utils/storage'
 import './Carrinho.css'
 
+// Mapeamento de quartos para imagens
+const getQuartoImage = (quartoId) => {
+  const imageMap = {
+    'imperial': '/imagem/quartos/Chale-03.jpeg',
+    'luxo': '/imagem/quartos/Chale-04.jpeg',
+    'premium': '/imagem/quartos/Chale-06.jpeg',
+    'exclusiva': '/imagem/quartos/Chale-07.jpeg',
+    'chale05': '/imagem/quartos/dormitorio-feminino-08.jpeg',
+    'chale08': '/imagem/quartos/dormitorio-masculino-09.jpeg'
+  }
+  return imageMap[quartoId] || '/imagem/quartos/Chale-03.jpeg'
+}
+
 const Carrinho = () => {
   const navigate = useNavigate()
   const [carrinho, setCarrinho] = useState(null)
@@ -26,7 +39,10 @@ const Carrinho = () => {
       <div className="carrinho-container">
         <div className="carrinho-left">
           <div className="carrinho-image">
-            <div className="carrinho-image-placeholder"></div>
+            <div 
+              className="carrinho-image-placeholder"
+              style={{ backgroundImage: `url(${getQuartoImage(carrinho.quartoId)})` }}
+            ></div>
           </div>
           <div className="carrinho-amenities">
             <div className="carrinho-amenity-item">
