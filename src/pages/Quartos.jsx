@@ -32,9 +32,10 @@ const Quartos = () => {
       {/* Text Section */}
       <section className="quartos-text-section">
         <p className="quartos-text">
-          CONHEÇA TODOS OS NOSSOS QUARTOS E ESCOLHA A OPÇÃO IDEAL PARA A SUA ESTADIA.
-          NA CHÁCARA ARCO ÍRIS, CADA SUÍTE OFERECE CONFORTO, TRANQUILIDADE E O AMBIENTE
-          PERFEITO PARA VOCÊ RELAXAR E APROVEITAR MOMENTOS INESQUECÍVEIS.
+          A Chácara Arco Íris conta com um total de 68 acomodações, sem contar os espaços para armadores de rede e o nosso auditório, que também pode ser adaptado como dormitório para até 50 pessoas.
+        </p>
+        <p className="quartos-text">
+          Nossas opções de hospedagem foram planejadas para receber desde pequenos grupos até grandes eventos, garantindo conforto, tranquilidade e uma estadia inesquecível.
         </p>
       </section>
 

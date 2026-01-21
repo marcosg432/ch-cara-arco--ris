@@ -40,7 +40,6 @@ const Footer = () => {
               <FaFacebook size={20} />
             </a>
           </div>
-          <button className="home-footer-button">Fazer reserva</button>
         </div>
       </div>
     </footer>

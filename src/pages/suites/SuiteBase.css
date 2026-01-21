@@ -138,6 +138,24 @@
   font-weight: 400;
 }
 
+.suite-capacity-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.suite-capacity-text {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.suite-capacity-text strong {
+  color: #333;
+  font-weight: 600;
+}
+
 .suite-text {
   font-size: 14px;
   color: #666;

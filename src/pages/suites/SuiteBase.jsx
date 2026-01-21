@@ -183,6 +183,36 @@ const SuiteBase = ({ suiteData }) => {
           
           <div className="suite-description">
             <h2 className="suite-title">{suiteData.nome}</h2>
+            <div className="suite-capacity-info">
+              {suiteData.id === 'chale05' ? (
+                <>
+                  <p className="suite-capacity-text">
+                    <strong>Capacidade:</strong> 14 acomodações
+                  </p>
+                  <p className="suite-capacity-text">
+                    <strong>Contendo:</strong> 6 beliches e 2 camas de casal
+                  </p>
+                </>
+              ) : suiteData.id === 'chale08' ? (
+                <>
+                  <p className="suite-capacity-text">
+                    <strong>Capacidade:</strong> 12 acomodações
+                  </p>
+                  <p className="suite-capacity-text">
+                    <strong>Contendo:</strong> 5 beliches e 2 camas solteiro
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="suite-capacity-text">
+                    <strong>Capacidade:</strong> 6 pessoas
+                  </p>
+                  <p className="suite-capacity-text">
+                    <strong>Contendo:</strong> 1 cama de casal e 2 beliches
+                  </p>
+                </>
+              )}
+            </div>
           </div>
 
 
@@ -214,7 +244,7 @@ const SuiteBase = ({ suiteData }) => {
               </div>
               <div className="booking-info-item">
                 <label>Capacidade de pessoas</label>
-                <p>Máximo 6 pessoas</p>
+                <p>Máximo {suiteData.id === 'chale05' ? '14' : suiteData.id === 'chale08' ? '12' : '6'} pessoas</p>
               </div>
               <div className="booking-info-item">
                 <label>Valor da diaria</label>
@@ -310,7 +340,7 @@ const SuiteBase = ({ suiteData }) => {
                     value={formData.pessoas}
                     onChange={handleChange}
                     min="1"
-                    max="6"
+                    max={suiteData.id === 'chale05' ? '14' : suiteData.id === 'chale08' ? '12' : '6'}
                     required
                   />
                 </div>
