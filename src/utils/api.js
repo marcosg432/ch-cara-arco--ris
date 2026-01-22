@@ -6,7 +6,7 @@ const getApiBaseUrl = () => {
     return import.meta.env.VITE_API_URL;
   }
   // Em desenvolvimento, usar proxy do Vite
-  return import.meta.env.DEV ? '/api' : 'http://localhost:3008/api';
+  return import.meta.env.DEV ? '/api' : 'http://localhost:3009/api';
 };
 
 // Função auxiliar para fazer requisições

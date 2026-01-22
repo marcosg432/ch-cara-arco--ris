@@ -10,8 +10,8 @@ module.exports = {
       max_memory_restart: '500M',
       env: {
         NODE_ENV: 'production',
-        PORT: 3008,
-        CORS_ORIGIN: 'http://localhost:3005,https://seudominio.com'
+        PORT: 3009,
+        CORS_ORIGIN: 'http://localhost:3005'
       },
       error_file: './logs/backend-err.log',
       out_file: './logs/backend-out.log',
