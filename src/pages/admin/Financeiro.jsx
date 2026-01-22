@@ -20,16 +20,30 @@ const Financeiro = () => {
   const navigate = useNavigate()
   const [reservas, setReservas] = useState([])
   const [mesAtual, setMesAtual] = useState(new Date())
-  const [metaOcupacao] = useState(getMetaOcupacao())
+  const [metaOcupacao, setMetaOcupacao] = useState(100)
+  const [despesas, setDespesas] = useState([])
 
   useEffect(() => {
-    const todasReservas = getReservas()
-    setReservas(todasReservas)
+    const carregarDados = async () => {
+      const todasReservas = await getReservas()
+      setReservas(todasReservas)
+      const meta = await getMetaOcupacao()
+      setMetaOcupacao(meta)
+      const todasDespesas = await getDespesas()
+      setDespesas(todasDespesas)
+    }
+    carregarDados()
   }, [])
 
   const mesAnterior = subMonths(mesAtual, 1)
-  const reservasMesAtual = getReservasPorMes(getMonth(mesAtual), getYear(mesAtual))
-  const reservasMesAnterior = getReservasPorMes(getMonth(mesAnterior), getYear(mesAnterior))
+  const reservasMesAtual = reservas.filter(r => {
+    const dataReserva = new Date(r.dataReserva)
+    return dataReserva.getMonth() === getMonth(mesAtual) && dataReserva.getFullYear() === getYear(mesAtual)
+  })
+  const reservasMesAnterior = reservas.filter(r => {
+    const dataReserva = new Date(r.dataReserva)
+    return dataReserva.getMonth() === getMonth(mesAnterior) && dataReserva.getFullYear() === getYear(mesAnterior)
+  })
 
   const reservasConcluidas = reservasMesAtual.filter(r => r.status === 'concluida')
   const reservasCanceladas = reservasMesAtual.filter(r => r.status === 'cancelada')
@@ -60,21 +74,9 @@ const Financeiro = () => {
   
   // Faturamento de reservas ativas (não canceladas) para cálculos de lucro
   const faturamentoConcluidas = reservasAtivas.reduce((sum, r) => sum + calcularValorReserva(r), 0)
-  const despesas = getDespesas()
   
-  // Recalcular despesas: "Taxas de plataformas" como % do faturamento de Booking/Airbnb
-  const reservasBookingAirbnb = reservasAtivas.filter(r => r.origem === 'Booking' || r.origem === 'Airbnb')
-  const faturamentoBookingAirbnb = reservasBookingAirbnb.reduce((sum, r) => sum + calcularValorReserva(r), 0)
-  
-  const despesasCalculadas = despesas.map(d => {
-    // Se for "Taxas de plataformas" e tiver quantidade, calcular como porcentagem
-    if (d.categoria && d.categoria.toLowerCase().includes('taxa') && d.quantidade) {
-      const porcentagem = parseFloat(d.quantidade) || 0
-      const totalCalculado = (faturamentoBookingAirbnb * porcentagem) / 100
-      return { ...d, total: totalCalculado }
-    }
-    return d
-  })
+  // Despesas calculadas (sem lógica de taxas de plataformas)
+  const despesasCalculadas = despesas
   
   const totalDespesas = despesasCalculadas.reduce((sum, d) => sum + d.total, 0)
   const lucro = faturamentoConcluidas - totalDespesas
@@ -191,27 +193,23 @@ const Financeiro = () => {
     return acc
   }, {})
 
-  // Usar valores reais das reservas
-  const totalOrigem = (origemReservas['Booking'] || 0) + (origemReservas['Airbnb'] || 0) + (origemReservas['Site / whatsapp'] || 0)
+  // Usar valores reais das reservas (apenas Site / whatsapp)
+  const totalOrigem = origemReservas['Site / whatsapp'] || 0
   const temOrigem = totalOrigem > 0
   
   // Se não houver reservas de origem, usar valor mínimo para mostrar gráfico cinza
   const dadosOrigemArray = temOrigem
-    ? [origemReservas['Booking'] || 0, origemReservas['Airbnb'] || 0, origemReservas['Site / whatsapp'] || 0]
-    : [1, 0, 0] // Valor mínimo para renderizar gráfico
+    ? [origemReservas['Site / whatsapp'] || 0]
+    : [1] // Valor mínimo para renderizar gráfico
   
-  // Porcentagens para origem de reservas (baseadas nos dados reais)
-  const porcentagemBooking = temOrigem ? ((origemReservas['Booking'] || 0) / totalOrigem * 100).toFixed(1).replace('.', ',') : '0,0'
-  const porcentagemAirbnb = temOrigem ? ((origemReservas['Airbnb'] || 0) / totalOrigem * 100).toFixed(1).replace('.', ',') : '0,0'
-  const porcentagemSite = temOrigem ? ((origemReservas['Site / whatsapp'] || 0) / totalOrigem * 100).toFixed(1).replace('.', ',') : '0,0'
+  // Porcentagem para origem de reservas (baseada nos dados reais)
+  const porcentagemSite = temOrigem ? (100).toFixed(1).replace('.', ',') : '0,0'
   
   // Cores para gráfico de origem (cinza se não houver dados)
-  const coresOrigem = temOrigem ? ['#003f8f', '#ff2aa1', '#00ff00'] : ['#9e9e9e', '#9e9e9e', '#9e9e9e']
+  const coresOrigem = temOrigem ? ['#00ff00'] : ['#9e9e9e']
 
   const dadosOrigem = [
-    { name: 'Site / whatsapp', value: origemReservas['Site / whatsapp'] || 0 },
-    { name: 'Booking', value: origemReservas['Booking'] || 0 },
-    { name: 'Airbnb', value: origemReservas['Airbnb'] || 0 }
+    { name: 'Site / whatsapp', value: origemReservas['Site / whatsapp'] || 0 }
   ]
 
   const totalReservas = reservasCanceladas.length + reservasConcluidas.length
@@ -432,14 +430,6 @@ const Financeiro = () => {
             </div>
             <h3>Origem de reserva</h3>
             <div className="grafico-legenda">
-              <div className="legenda-item">
-                <span className="color-box" style={{ background: '#003f8f' }}></span>
-                <span className="legenda-texto">Booking {porcentagemBooking}%</span>
-              </div>
-              <div className="legenda-item">
-                <span className="color-box" style={{ background: '#ff2aa1' }}></span>
-                <span className="legenda-texto">Airbnb {porcentagemAirbnb}%</span>
-              </div>
               <div className="legenda-item">
                 <span className="color-box" style={{ background: '#00ff00' }}></span>
                 <span className="legenda-texto">Site / WhatsApp {porcentagemSite}%</span>

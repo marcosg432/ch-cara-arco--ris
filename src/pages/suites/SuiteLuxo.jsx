@@ -4,7 +4,7 @@ const SuiteLuxo = () => {
   const suiteData = {
     id: 'luxo',
     nome: 'Chále 04',
-    preco: 350,
+    preco: 300,
     descricao: 'Espaçosa e confortável, oferece uma experiência premium com design moderno e detalhes que garantem bem-estar, descanso e uma estadia inesquecível.'
   }
 

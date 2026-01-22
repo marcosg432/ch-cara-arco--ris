@@ -46,35 +46,35 @@ const Quartos = () => {
             <div className="quartos-page-card-image imperial"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
             <h3 className="quartos-page-card-title">Chále 03</h3>
-            <div className="quartos-page-card-price">R$ 249 / Noite</div>
+            <div className="quartos-page-card-price">R$ 300 / Noite</div>
             <Link to="/suite-imperial" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
             <div className="quartos-page-card-image luxo"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
             <h3 className="quartos-page-card-title">Chále 04</h3>
-            <div className="quartos-page-card-price">R$ 350 / Noite</div>
+            <div className="quartos-page-card-price">R$ 300 / Noite</div>
             <Link to="/suite-luxo" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
             <div className="quartos-page-card-image premium"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
             <h3 className="quartos-page-card-title">Chále 06</h3>
-            <div className="quartos-page-card-price">R$ 450 / Noite</div>
+            <div className="quartos-page-card-price">R$ 300 / Noite</div>
             <Link to="/suite-premium" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
             <div className="quartos-page-card-image exclusiva"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
             <h3 className="quartos-page-card-title">Chále 07</h3>
-            <div className="quartos-page-card-price">R$ 550 / Noite</div>
+            <div className="quartos-page-card-price">R$ 300 / Noite</div>
             <Link to="/suite-exclusiva" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">
             <div className="quartos-page-card-image chale05"></div>
             <div className="quartos-page-card-icon"><FaTv /></div>
             <h3 className="quartos-page-card-title">Dormitório 08 feminino</h3>
-            <div className="quartos-page-card-price">R$ 400 / Noite</div>
+            <div className="quartos-page-card-price">R$ 600 / Noite</div>
             <Link to="/suite-chale05" className="quartos-page-card-button">saiba mais</Link>
           </div>
           <div className="quartos-page-card">

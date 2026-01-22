@@ -21,26 +21,33 @@ const Checkout = () => {
     setCarrinho(carrinhoData)
   }, [navigate])
 
-  const handlePagamento = () => {
+  const handlePagamento = async () => {
     if (!metodoPagamento) {
       alert('Por favor, selecione um método de pagamento')
       return
     }
 
-    // Salvar reserva
-    const reserva = {
-      ...carrinho,
-      metodoPagamento,
-      origem: 'Site / whatsapp'
+    try {
+      // Salvar reserva
+      const reserva = {
+        ...carrinho,
+        metodoPagamento,
+        origem: 'Site / whatsapp'
+      }
+
+      await saveReserva(reserva)
+      clearCarrinho()
+      setReservaConcluida(true)
+
+      setTimeout(() => {
+        navigate('/')
+      }, 3000)
+    } catch (error) {
+      console.error('Erro ao salvar reserva:', error)
+      console.error('Detalhes do erro:', error.message)
+      const errorMessage = error.message || 'Erro ao processar reserva. Tente novamente.'
+      alert(`Erro ao processar reserva: ${errorMessage}`)
     }
-
-    saveReserva(reserva)
-    clearCarrinho()
-    setReservaConcluida(true)
-
-    setTimeout(() => {
-      navigate('/')
-    }, 3000)
   }
 
   if (!carrinho) return null

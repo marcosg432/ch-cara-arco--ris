@@ -1,15 +1,25 @@
-# Brisa Azul - Resort & Spa Hotel
+# Chácara Arco Íris
 
-Site completo para o Resort & Spa Hotel Brisa Azul, incluindo sistema de reservas funcional e painel administrativo.
+Site completo para a Chácara Arco Íris, incluindo sistema de reservas funcional e painel administrativo.
 
 ## 🚀 Tecnologias
 
+### Frontend
 - React 18
 - Vite
 - React Router DOM
 - Recharts (gráficos)
 - date-fns (manipulação de datas)
-- LocalStorage (armazenamento de dados)
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- API REST
+
+## 🗄️ Banco de Dados
+
+O sistema agora usa **MongoDB** como banco de dados real. Veja o guia completo em: [INSTALACAO_BANCO_DADOS.md](./INSTALACAO_BANCO_DADOS.md)
 
 ## 📦 Instalação
 

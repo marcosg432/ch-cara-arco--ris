@@ -5,7 +5,7 @@ import PrivateHeader from '../../components/PrivateHeader'
 import Footer from '../../components/Footer'
 import Calendar from '../../components/Calendar'
 import { format } from 'date-fns'
-import { saveCarrinho, formatarMoeda } from '../../utils/storage'
+import { saveCarrinho, formatarMoeda, isChale, calcularPrecoChales, isDormitorio, calcularPrecoDormitorios } from '../../utils/storage'
 import './SuiteBase.css'
 
 const SuiteBase = ({ suiteData }) => {
@@ -38,7 +38,9 @@ const SuiteBase = ({ suiteData }) => {
     quantidadeCriancas: 0,
     idades: [],
     checkIn: null,
-    checkOut: null
+    checkOut: null,
+    quantidadeChales: 1,
+    quantidadeDormitorios: 1
   })
 
   const handleDateSelect = (checkIn, checkOut) => {
@@ -91,6 +93,20 @@ const SuiteBase = ({ suiteData }) => {
     if (!formData.checkIn || !formData.checkOut) return 0
     const diffTime = Math.abs(formData.checkOut - formData.checkIn)
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    
+    // Se for chalé, usar a lógica de cálculo por quantidade de chalés
+    if (isChale(suiteData.id)) {
+      const precoDiaria = calcularPrecoChales(parseInt(formData.quantidadeChales) || 1)
+      return diffDays * precoDiaria
+    }
+    
+    // Se for dormitório, usar a lógica de cálculo por quantidade de dormitórios
+    if (isDormitorio(suiteData.id)) {
+      const precoDiaria = calcularPrecoDormitorios(parseInt(formData.quantidadeDormitorios) || 1)
+      return diffDays * precoDiaria
+    }
+    
+    // Fallback para outros tipos (não deveria acontecer)
     return diffDays * suiteData.preco
   }
 
@@ -130,13 +146,23 @@ const SuiteBase = ({ suiteData }) => {
       return
     }
 
+    // Calcular preço por noite baseado no tipo de quarto
+    let precoPorNoite = suiteData.preco
+    if (isChale(suiteData.id)) {
+      precoPorNoite = calcularPrecoChales(parseInt(formData.quantidadeChales) || 1)
+    } else if (isDormitorio(suiteData.id)) {
+      precoPorNoite = calcularPrecoDormitorios(parseInt(formData.quantidadeDormitorios) || 1)
+    }
+
     const carrinho = {
       ...formData,
       quartoId: suiteData.id,
       quartoNome: suiteData.nome,
-      preco: suiteData.preco,
+      preco: precoPorNoite,
       total: calcularTotal(),
-      noites: calcularNoites()
+      noites: calcularNoites(),
+      quantidadeChales: isChale(suiteData.id) ? (parseInt(formData.quantidadeChales) || 1) : undefined,
+      quantidadeDormitorios: isDormitorio(suiteData.id) ? (parseInt(formData.quantidadeDormitorios) || 1) : undefined
     }
 
     saveCarrinho(carrinho)
@@ -248,7 +274,13 @@ const SuiteBase = ({ suiteData }) => {
               </div>
               <div className="booking-info-item">
                 <label>Valor da diaria</label>
-                <p className="booking-price">R$ {formatarMoeda(suiteData.preco)} / Noite</p>
+                {isChale(suiteData.id) ? (
+                  <p className="booking-price">R$ {formatarMoeda(calcularPrecoChales(1))} / Noite (por chalé)</p>
+                ) : isDormitorio(suiteData.id) ? (
+                  <p className="booking-price">R$ {formatarMoeda(calcularPrecoDormitorios(1))} / Noite (por dormitório)</p>
+                ) : (
+                  <p className="booking-price">R$ {formatarMoeda(suiteData.preco)} / Noite</p>
+                )}
               </div>
             </div>
 
@@ -355,6 +387,42 @@ const SuiteBase = ({ suiteData }) => {
                 />
               </div>
 
+              {isChale(suiteData.id) && (
+                <div className="form-group">
+                  <label>Quantidade de chalés*</label>
+                  <input
+                    type="number"
+                    name="quantidadeChales"
+                    value={formData.quantidadeChales}
+                    onChange={handleChange}
+                    min="1"
+                    max="10"
+                    required
+                  />
+                  <small style={{ display: 'block', marginTop: '5px', color: '#666' }}>
+                    Cada chalé custa R$ {formatarMoeda(300)} por diária
+                  </small>
+                </div>
+              )}
+
+              {isDormitorio(suiteData.id) && (
+                <div className="form-group">
+                  <label>Quantidade de dormitórios*</label>
+                  <input
+                    type="number"
+                    name="quantidadeDormitorios"
+                    value={formData.quantidadeDormitorios}
+                    onChange={handleChange}
+                    min="1"
+                    max="10"
+                    required
+                  />
+                  <small style={{ display: 'block', marginTop: '5px', color: '#666' }}>
+                    Cada dormitório custa R$ {formatarMoeda(600)} por diária
+                  </small>
+                </div>
+              )}
+
               <div className="form-checkbox">
                 <input
                   type="checkbox"
@@ -415,7 +483,15 @@ const SuiteBase = ({ suiteData }) => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>R$ {formatarMoeda(suiteData.preco)} / Noite</label>
+                  <label>
+                    {isChale(suiteData.id) ? (
+                      <>R$ {formatarMoeda(calcularPrecoChales(parseInt(formData.quantidadeChales) || 1))} / Noite</>
+                    ) : isDormitorio(suiteData.id) ? (
+                      <>R$ {formatarMoeda(calcularPrecoDormitorios(parseInt(formData.quantidadeDormitorios) || 1))} / Noite</>
+                    ) : (
+                      <>R$ {formatarMoeda(suiteData.preco)} / Noite</>
+                    )}
+                  </label>
                 </div>
                 <div className="form-group">
                   <label>Total de Noite</label>

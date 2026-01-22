@@ -6,10 +6,32 @@ import './Calendar.css'
 const Calendar = ({ quartoId, checkIn, checkOut, onDateSelect, disabledDates = [], selectingCheckIn = true }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [isSelectingCheckIn, setIsSelectingCheckIn] = useState(selectingCheckIn)
+  const [datasOcupadas, setDatasOcupadas] = useState(new Set())
 
   useEffect(() => {
     setIsSelectingCheckIn(selectingCheckIn)
   }, [selectingCheckIn])
+
+  useEffect(() => {
+    // Carregar datas ocupadas para o mês atual
+    const carregarDatasOcupadas = async () => {
+      if (!quartoId) return
+      const monthStart = startOfMonth(currentMonth)
+      const monthEnd = endOfMonth(currentMonth)
+      const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd })
+      const ocupadas = new Set()
+      
+      for (const day of daysInMonth) {
+        const ocupada = await isDataOcupada(day, quartoId)
+        if (ocupada) {
+          ocupadas.add(day.toISOString().split('T')[0])
+        }
+      }
+      
+      setDatasOcupadas(ocupadas)
+    }
+    carregarDatasOcupadas()
+  }, [quartoId, currentMonth])
 
   const monthStart = startOfMonth(currentMonth)
   const monthEnd = endOfMonth(currentMonth)
@@ -51,7 +73,9 @@ const Calendar = ({ quartoId, checkIn, checkOut, onDateSelect, disabledDates = [
       if (dayStart <= checkInStart) return true
     }
     
-    if (isDataOcupada(day, quartoId)) return true
+    // Verificar se a data está ocupada usando o cache
+    const dayStr = day.toISOString().split('T')[0]
+    if (datasOcupadas.has(dayStr)) return true
     
     if (disabledDates.some(d => isSameDay(d, day))) return true
     

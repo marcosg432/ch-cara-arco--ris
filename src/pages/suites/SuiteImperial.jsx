@@ -4,7 +4,7 @@ const SuiteImperial = () => {
   const suiteData = {
     id: 'imperial',
     nome: 'Chále 03',
-    preco: 249,
+    preco: 300,
     descricao: 'Uma suíte elegante e aconchegante, pensada para quem busca conforto e tranquilidade. Ideal para casais que desejam relaxar em um ambiente sofisticado, com clima intimista e acolhedor.'
   }
 

@@ -11,31 +11,36 @@ const Planilha = () => {
   const [quartos, setQuartos] = useState([])
 
   useEffect(() => {
-    // Buscar todas as reservas e filtrar por mês selecionado
-    const todasReservas = getReservas()
-    const mes = mesSelecionado.getMonth()
-    const ano = mesSelecionado.getFullYear()
-    
-    // Filtrar reservas que estão ativas no mês selecionado
-    // (check-in ou check-out no mês, ou que atravessam o mês)
-    const reservasMes = todasReservas.filter(r => {
-      if (!r.checkIn || !r.checkOut) return false
-      const checkIn = new Date(r.checkIn)
-      const checkOut = new Date(r.checkOut)
-      const checkInMes = checkIn.getMonth()
-      const checkInAno = checkIn.getFullYear()
-      const checkOutMes = checkOut.getMonth()
-      const checkOutAno = checkOut.getFullYear()
+    const carregarDados = async () => {
+      // Buscar todas as reservas e filtrar por mês selecionado
+      const todasReservas = await getReservas()
+      const mes = mesSelecionado.getMonth()
+      const ano = mesSelecionado.getFullYear()
       
-      // Reserva está no mês se check-in ou check-out está no mês, ou se atravessa o mês
-      return (checkInMes === mes && checkInAno === ano) || 
-             (checkOutMes === mes && checkOutAno === ano) ||
-             (checkIn <= new Date(ano, mes + 1, 0) && checkOut >= new Date(ano, mes, 1))
-    })
-    
-    setReservas(reservasMes)
-    setDespesas(getDespesas())
-    setQuartos(getQuartos())
+      // Filtrar reservas que estão ativas no mês selecionado
+      // (check-in ou check-out no mês, ou que atravessam o mês)
+      const reservasMes = todasReservas.filter(r => {
+        if (!r.checkIn || !r.checkOut) return false
+        const checkIn = new Date(r.checkIn)
+        const checkOut = new Date(r.checkOut)
+        const checkInMes = checkIn.getMonth()
+        const checkInAno = checkIn.getFullYear()
+        const checkOutMes = checkOut.getMonth()
+        const checkOutAno = checkOut.getFullYear()
+        
+        // Reserva está no mês se check-in ou check-out está no mês, ou se atravessa o mês
+        return (checkInMes === mes && checkInAno === ano) || 
+               (checkOutMes === mes && checkOutAno === ano) ||
+               (checkIn <= new Date(ano, mes + 1, 0) && checkOut >= new Date(ano, mes, 1))
+      })
+      
+      setReservas(reservasMes)
+      const todasDespesas = await getDespesas()
+      setDespesas(todasDespesas)
+      const todosQuartos = await getQuartos()
+      setQuartos(todosQuartos)
+    }
+    carregarDados()
   }, [mesSelecionado])
 
   // Função auxiliar para calcular o valor de uma reserva (200 reais por noite)
@@ -81,19 +86,8 @@ const Planilha = () => {
   // Calcular faturamento de reservas ativas (não canceladas) para o cálculo do lucro
   const faturamentoTotal = reservasAtivas.reduce((sum, r) => sum + calcularValorReserva(r), 0)
   
-  // Para calcular "Taxas de plataformas", usar reservas ativas de Booking/Airbnb
-  const reservasBookingAirbnb = reservasAtivas.filter(r => r.origem === 'Booking' || r.origem === 'Airbnb')
-  const faturamentoBookingAirbnb = reservasBookingAirbnb.reduce((sum, r) => sum + calcularValorReserva(r), 0)
-  
-  const despesasCalculadas = despesas.map(d => {
-    // Se for "Taxas de plataformas" e tiver quantidade, calcular como porcentagem
-    if (d.categoria && d.categoria.toLowerCase().includes('taxa') && d.quantidade) {
-      const porcentagem = parseFloat(d.quantidade) || 0
-      const totalCalculado = (faturamentoBookingAirbnb * porcentagem) / 100
-      return { ...d, total: totalCalculado }
-    }
-    return d
-  })
+  // Despesas calculadas (sem lógica de taxas de plataformas)
+  const despesasCalculadas = despesas
   
   const totalDespesas = despesasCalculadas.reduce((sum, d) => sum + d.total, 0)
   const lucro = faturamentoTotal - totalDespesas
@@ -183,6 +177,13 @@ const Planilha = () => {
                     <td>{formatarMoeda(despesa.total)}</td>
                   </tr>
                 ))}
+                {despesasCalculadas.length > 0 && (
+                  <tr className="planilha-total-row">
+                    <td><strong>Total</strong></td>
+                    <td></td>
+                    <td><strong>{formatarMoeda(totalDespesas)}</strong></td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

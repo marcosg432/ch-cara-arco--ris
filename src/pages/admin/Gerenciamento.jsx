@@ -11,26 +11,41 @@ const Gerenciamento = () => {
   const usuarioLogado = getUsuarioLogado()
 
   useEffect(() => {
-    const todosFuncionarios = getFuncionarios()
-    setFuncionarios(todosFuncionarios)
+    const carregarDados = async () => {
+      const todosFuncionarios = await getFuncionarios()
+      setFuncionarios(todosFuncionarios)
+    }
+    carregarDados()
   }, [])
 
   const handleAdd = () => {
     setShowForm(true)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    saveFuncionario(formData)
-    setFuncionarios(getFuncionarios())
-    setFormData({ nome: '', email: '', senha: '' })
-    setShowForm(false)
+    try {
+      await saveFuncionario(formData)
+      const todosFuncionarios = await getFuncionarios()
+      setFuncionarios(todosFuncionarios)
+      setFormData({ nome: '', email: '', senha: '' })
+      setShowForm(false)
+    } catch (error) {
+      console.error('Erro ao salvar funcionário:', error)
+      alert('Erro ao salvar funcionário. Tente novamente.')
+    }
   }
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm('Deseja realmente excluir este funcionário?')) {
-      deleteFuncionario(id)
-      setFuncionarios(getFuncionarios())
+      try {
+        await deleteFuncionario(id)
+        const todosFuncionarios = await getFuncionarios()
+        setFuncionarios(todosFuncionarios)
+      } catch (error) {
+        console.error('Erro ao deletar funcionário:', error)
+        alert('Erro ao deletar funcionário. Tente novamente.')
+      }
     }
   }
 

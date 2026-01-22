@@ -9,13 +9,16 @@ const Quartos = () => {
   const [selectedQuarto, setSelectedQuarto] = useState(null)
 
   useEffect(() => {
-    const todosQuartos = getQuartos()
-    setQuartos(todosQuartos)
+    const carregarDados = async () => {
+      const todosQuartos = await getQuartos()
+      setQuartos(todosQuartos)
+    }
+    carregarDados()
   }, [])
 
 
-  const handleVerFicha = (quarto) => {
-    const reservas = getReservasPorQuarto(quarto.id)
+  const handleVerFicha = async (quarto) => {
+    const reservas = await getReservasPorQuarto(quarto.id)
     setSelectedQuarto({ ...quarto, reservas })
   }
 

@@ -4,7 +4,7 @@ const SuiteChale05 = () => {
   const suiteData = {
     id: 'chale05',
     nome: 'Dormitório 08 feminino',
-    preco: 400,
+    preco: 600,
     descricao: ''
   }
 

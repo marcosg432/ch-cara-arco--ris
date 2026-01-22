@@ -10,8 +10,11 @@ const Historico = () => {
   const [selectedReserva, setSelectedReserva] = useState(null)
 
   useEffect(() => {
-    const todasReservas = getReservas()
-    setReservas(todasReservas.filter(r => r.status === 'cancelada' || r.status === 'concluida'))
+    const carregarDados = async () => {
+      const todasReservas = await getReservas()
+      setReservas(todasReservas.filter(r => r.status === 'cancelada' || r.status === 'concluida'))
+    }
+    carregarDados()
   }, [])
 
   const filteredReservas = reservas.filter(r => {
@@ -28,11 +31,16 @@ const Historico = () => {
     setSelectedReserva(reserva)
   }
 
-  const handleExcluir = (id) => {
+  const handleExcluir = async (id) => {
     if (window.confirm('Deseja realmente excluir permanentemente esta reserva?')) {
-      deleteReserva(id)
-      setReservas(reservas.filter(r => r.id !== id))
-      setSelectedReserva(null)
+      try {
+        await deleteReserva(id)
+        setReservas(reservas.filter(r => r.id !== id && r._id !== id))
+        setSelectedReserva(null)
+      } catch (error) {
+        console.error('Erro ao excluir reserva:', error)
+        alert('Erro ao excluir reserva. Tente novamente.')
+      }
     }
   }
 

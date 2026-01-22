@@ -71,19 +71,19 @@ const Home = () => {
           <div className="quartos-card">
             <div className="quartos-card-image imperial"></div>
             <h3 className="quartos-card-title">Chále 03</h3>
-            <div className="quartos-card-price">R$ 249 / Noite</div>
+            <div className="quartos-card-price">R$ 300 / Noite</div>
             <Link to="/suite-imperial" className="quartos-card-button">saiba mais</Link>
           </div>
           <div className="quartos-card">
             <div className="quartos-card-image luxo"></div>
             <h3 className="quartos-card-title">Chále 04</h3>
-            <div className="quartos-card-price">R$ 350 / Noite</div>
+            <div className="quartos-card-price">R$ 300 / Noite</div>
             <Link to="/suite-luxo" className="quartos-card-button">saiba mais</Link>
           </div>
           <div className="quartos-card">
             <div className="quartos-card-image premium"></div>
             <h3 className="quartos-card-title">Chále 06</h3>
-            <div className="quartos-card-price">R$ 450 / Noite</div>
+            <div className="quartos-card-price">R$ 300 / Noite</div>
             <Link to="/suite-premium" className="quartos-card-button">saiba mais</Link>
           </div>
         </div>

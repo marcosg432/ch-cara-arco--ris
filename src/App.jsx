@@ -21,8 +21,6 @@ import Historico from './pages/admin/Historico'
 import Gerenciamento from './pages/admin/Gerenciamento'
 import Despesas from './pages/admin/Despesas'
 import Planilha from './pages/admin/Planilha'
-import Booking from './pages/Booking'
-import Airbnb from './pages/Airbnb'
 import VideoPreloader from './components/VideoPreloader'
 
 function App() {
@@ -53,8 +51,6 @@ function App() {
         <Route path="/admin/gerenciamento" element={<Gerenciamento />} />
         <Route path="/admin/despesas" element={<Despesas />} />
         <Route path="/admin/planilha" element={<Planilha />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/airbnb" element={<Airbnb />} />
       </Routes>
     </Router>
   )

@@ -10,71 +10,28 @@ const Despesas = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [metaOcupacao, setMetaOcupacaoState] = useState(100)
 
-  // Função para calcular faturamento de Booking e Airbnb do mês atual
-  const calcularFaturamentoBookingAirbnb = () => {
-    const todasReservas = getReservas()
-    const mesAtual = new Date()
-    const mes = mesAtual.getMonth()
-    const ano = mesAtual.getFullYear()
-    
-    // Filtrar reservas do Booking e Airbnb do mês atual
-    const reservasMes = todasReservas.filter(r => {
-      if (r.status === 'cancelada') return false
-      if (r.origem !== 'Booking' && r.origem !== 'Airbnb') return false
-      if (!r.checkIn || !r.checkOut) return false
-      const checkIn = new Date(r.checkIn)
-      const checkOut = new Date(r.checkOut)
-      const checkInMes = checkIn.getMonth()
-      const checkInAno = checkIn.getFullYear()
-      const checkOutMes = checkOut.getMonth()
-      const checkOutAno = checkOut.getFullYear()
-      
-      return (checkInMes === mes && checkInAno === ano) || 
-             (checkOutMes === mes && checkOutAno === ano) ||
-             (checkIn <= new Date(ano, mes + 1, 0) && checkOut >= new Date(ano, mes, 1))
-    })
-    
-    // Calcular valor total das reservas
-    const calcularValorReserva = (r) => {
-      if (r.total && r.total > 0) {
-        return r.total
-      }
-      if (r.checkIn && r.checkOut) {
-        const checkIn = new Date(r.checkIn)
-        const checkOut = new Date(r.checkOut)
-        const diffTime = Math.abs(checkOut - checkIn)
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-        return diffDays * 200
-      }
-      return 200
-    }
-    
-    return reservasMes.reduce((sum, r) => sum + calcularValorReserva(r), 0)
-  }
-
   useEffect(() => {
-    const todasDespesas = getDespesas()
-    // Recalcular total de "Taxas de plataformas" ao carregar
-    const despesasAtualizadas = todasDespesas.map(d => {
-      if (d.categoria && d.categoria.toLowerCase().includes('taxa') && d.quantidade) {
-        const porcentagem = parseFloat(d.quantidade) || 0
-        const faturamentoBookingAirbnb = calcularFaturamentoBookingAirbnb()
-        const totalCalculado = (faturamentoBookingAirbnb * porcentagem) / 100
-        return { ...d, total: totalCalculado }
-      }
-      return d
-    })
-    setDespesas(despesasAtualizadas)
-    setMetaOcupacaoState(getMetaOcupacao())
+    const carregarDados = async () => {
+      const todasDespesas = await getDespesas()
+      setDespesas(todasDespesas)
+      const meta = await getMetaOcupacao()
+      setMetaOcupacaoState(meta)
+    }
+    carregarDados()
   }, [])
 
   const handleEdit = () => {
     setIsEditing(true)
   }
 
-  const handleSave = () => {
-    updateDespesas(despesas)
-    setIsEditing(false)
+  const handleSave = async () => {
+    try {
+      await updateDespesas(despesas)
+      setIsEditing(false)
+    } catch (error) {
+      console.error('Erro ao salvar despesas:', error)
+      alert('Erro ao salvar despesas. Tente novamente.')
+    }
   }
 
   const handleChange = (id, field, value) => {
@@ -83,20 +40,7 @@ const Despesas = () => {
         if (field === 'categoria') {
           return { ...d, categoria: value }
         } else if (field === 'quantidade') {
-          // Se for "Taxas de plataformas", tratar como porcentagem
-          const isTaxasPlataformas = d.categoria && d.categoria.toLowerCase().includes('taxa')
           let novaDespesa = { ...d, quantidade: value === '' ? null : value }
-          
-          if (isTaxasPlataformas && value) {
-            // Limitar a 100%
-            const porcentagem = Math.min(100, Math.max(0, parseFloat(value) || 0))
-            novaDespesa.quantidade = porcentagem.toString()
-            
-            // Calcular total como porcentagem do faturamento de Booking/Airbnb
-            const faturamentoBookingAirbnb = calcularFaturamentoBookingAirbnb()
-            const totalCalculado = (faturamentoBookingAirbnb * porcentagem) / 100
-            novaDespesa.total = totalCalculado
-          }
           
           return novaDespesa
         } else {
@@ -138,14 +82,20 @@ const Despesas = () => {
     setDespesas([...despesas, novaDespesa])
   }
 
-  const handleDeleteRow = (id) => {
-    // Não permitir excluir "Taxas de plataformas"
-    const despesa = despesas.find(d => d.id === id)
-    if (despesa && despesa.categoria && despesa.categoria.toLowerCase().includes('taxa')) {
-      alert('Esta linha não pode ser excluída.')
-      return
+  const handleDeleteRow = async (id) => {
+    try {
+      // Se tiver _id, deletar do backend
+      const despesa = despesas.find(d => d.id === id || d._id === id)
+      if (despesa && despesa._id) {
+        const { deleteDespesa } = await import('../../utils/api')
+        await deleteDespesa(despesa._id)
+      }
+      setDespesas(despesas.filter(d => (d.id !== id && d._id !== id)))
+    } catch (error) {
+      console.error('Erro ao deletar despesa:', error)
+      // Remover localmente mesmo se der erro
+      setDespesas(despesas.filter(d => (d.id !== id && d._id !== id)))
     }
-    setDespesas(despesas.filter(d => d.id !== id))
   }
 
   return (
@@ -270,10 +220,10 @@ const Despesas = () => {
             <h2 className="meta-title">
               Meta a se bater
             </h2>
-            <button className="meta-button" onClick={() => {
+            <button className="meta-button" onClick={async () => {
               const novaMeta = parseInt(prompt('Digite a meta:')) || 0
               setMetaOcupacaoState(novaMeta)
-              setMetaOcupacao(novaMeta)
+              await setMetaOcupacao(novaMeta)
             }}>
               coloca meta
             </button>

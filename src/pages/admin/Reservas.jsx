@@ -12,8 +12,11 @@ const Reservas = () => {
   const [selectedReserva, setSelectedReserva] = useState(null)
 
   useEffect(() => {
-    const todasReservas = getReservas()
-    setReservas(todasReservas.filter(r => r.status !== 'cancelada' && r.status !== 'concluida'))
+    const carregarDados = async () => {
+      const todasReservas = await getReservas()
+      setReservas(todasReservas.filter(r => r.status !== 'cancelada' && r.status !== 'concluida'))
+    }
+    carregarDados()
   }, [])
 
   const filteredReservas = reservas.filter(r => {
@@ -30,11 +33,16 @@ const Reservas = () => {
     setSelectedReserva(reserva)
   }
 
-  const handleCancelar = (id) => {
+  const handleCancelar = async (id) => {
     if (window.confirm('Deseja realmente cancelar esta reserva?')) {
-      updateReserva(id, { status: 'cancelada' })
-      setReservas(reservas.filter(r => r.id !== id))
-      setSelectedReserva(null)
+      try {
+        await updateReserva(id, { status: 'cancelada' })
+        setReservas(reservas.filter(r => r.id !== id && r._id !== id))
+        setSelectedReserva(null)
+      } catch (error) {
+        console.error('Erro ao cancelar reserva:', error)
+        alert('Erro ao cancelar reserva. Tente novamente.')
+      }
     }
   }
 
